@@ -1,0 +1,280 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Body */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    background-image: url('/images/bkg3.jpg'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Background Overlay */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Adjust the opacity as needed */
+}
+
+/* Wrapper */
+.wrapper {
+    padding: 25px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+    text-align: center;
+    position: relative;
+}
+
+/* Title */
+h1 {
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    font-size: 33px; /* Smaller font size */
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Information Box */
+.info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.info-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 100px;
+    transition: transform 0.3s;
+}
+
+.info-box:hover {
+    transform: translateY(-10px);
+}
+
+.info-box span {
+    display: block;
+    font-size: 14px;
+    color: #666;
+}
+
+.info-box p {
+    margin-top: 5px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Memory Card Game */
+.cards, .card, .view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards {
+    height: 400px;
+    width: 400px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cards .card {
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    height: calc(100% / 4 - 10px);
+    width: calc(100% / 4 - 10px);
+    transition: transform 0.3s;
+}
+
+/* Iteration Counter */
+#iterations {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #2196F3; /* Blue background */
+    padding: 15px 20px; /* Adjusted padding */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+#iterations:hover {
+    transform: translateY(-2px);
+    background-color: #0D47A1; /* Darker blue background on hover */
+}
+
+/* Timer */
+#timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #FF5252; /* Red background */
+    padding: 15px 20px; /* Adjusted padding */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+#timer:hover {
+    transform: translateY(-2px);
+    background-color: #D32F2F; /* Darker red background on hover */
+}
+
+
+
+
+.cards .card:hover {
+    transform: scale(1.1) translateZ(30px);
+}
+
+.card.shake {
+    animation: shake 0.35s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-13px);
+    }
+    40% {
+        transform: translateX(13px);
+    }
+    60% {
+        transform: translateX(-8px);
+    }
+    80% {
+        transform: translateX(8px);
+    }
+}
+
+.card .view {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 7px;
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    pointer-events: none;
+    backface-visibility: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s linear, box-shadow 0.25s linear;
+}
+
+.card .front-view img {
+    width: 19px;
+}
+
+.card .back-view img {
+    max-width: 45px;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .back-view img {
+    transform: rotate(360deg);
+}
+
+.card .back-view {
+    transform: rotateY(-180deg);
+}
+
+.card.flip .back-view {
+    transform: rotateY(0);
+}
+
+.card.flip .front-view {
+    transform: rotateY(180deg);
+}
+
+/* Congratulations Message */
+.congratulations {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+#play-again {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+#play-again:hover {
+    background-color: #45a049;
+}
+
+/* Media Queries */
+@media screen and (max-width: 350px) {
+    .cards {
+        height: 350px;
+        width: 350px;
+    }
+
+    .card .front-view img {
+        width: 17px;
+    }
+
+    .card .back-view img {
+        max-width: 40px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .cards {
+        height: 300px;
+        width: 300px;
+    }
+
+    .card .front-view img {
+        width: 15px;
+    }
+
+    .card .back-view img {
+        max-width: 35px;
+    }
+}
